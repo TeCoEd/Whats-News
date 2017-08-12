@@ -41,11 +41,6 @@ def send_an_email():
     part.add_header('Content-Disposition', 'attachment; filename="Whats_News.pptx"')
     msg.attach(part)
 
-    '''fp = open('Whats_News.pptx', 'rb')
-    img = MIMEfile(fp.read())
-    fp.close()
-    msg.attach(img)'''
-
     try:
        s = smtplib.SMTP('smtp.gmail.com', 587)
        s.ehlo()
@@ -61,7 +56,6 @@ def send_an_email():
           print ("Error")
 
 ### Create News Feed, pull down latest News ###
-#BBCnews = feedparser.parse("http://feeds.bbci.co.uk/news/rss.xml?edition=uk")
 SKYnews = feedparser.parse("http://feeds.skynews.com/feeds/rss/uk.xml")
 
 ### Create the slide layout ###
