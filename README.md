@@ -16,3 +16,7 @@ Further documentaion and API overview can be found below
 
 Website project page:
 http://www.tecoed.co.uk/whats-news-app.html
+
+Videos:
+- https://www.youtube.com/watch?v=rBn2ulKUTr4
+- https://www.youtube.com/watch?v=buTgy9r_iiI
