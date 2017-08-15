@@ -4,9 +4,9 @@ A program which automatically create a PPT of the top 10 News Headlines and emai
 
 The program requires you to install a number of modules, open the LX Terminal and type in the following:
 
-sudo pip3 install feedparser
-pip install python-pptx
-sudo apt-get install python3-lxml
++ sudo pip3 install feedparser
++ pip install python-pptx
++ sudo apt-get install python3-lxml
 
 Further documentaion and API overview can be found below
 
