@@ -11,7 +11,7 @@ The program requires you to install a number of modules,
 Further documentaion and API overview can be found below
 
 + http://python-pptx.readthedocs.io/en/latest/user/quickstart.html
-+http://python-pptx.readthedocs.io/en/latest/user/install.html
++ http://python-pptx.readthedocs.io/en/latest/user/install.html
 + https://www.raspberrypi.org/forums/viewtopic.php?t=86441
 
 Website project page:
