@@ -19,15 +19,10 @@ from email.mime.text import MIMEText
 from email.utils import formatdate
 from email import encoders
 
-### lists to hold headline and link ###
-News = []
-Links = []
-prs = Presentation()
-
 ### Function to send the email ###
 def send_an_email():
-    toaddr = '#######################'    # redacted
-    me = '###################' # redacted
+    toaddr = '################'    # redacted
+    me = '#################' # redacted
     subject = "What's News"
 
     msg = MIMEMultipart()
@@ -53,7 +48,7 @@ def send_an_email():
        s.ehlo()
        s.starttls()
        s.ehlo()
-       s.login(user = '################', password = '##########')
+       s.login(user = '###################', password = '##################')
        #s.send_message(msg)
        s.sendmail(me, toaddr, msg.as_string())
        s.quit()
@@ -62,29 +57,12 @@ def send_an_email():
     except SMTPException as error:
           print ("Error")
 
-### Create News Feed, pull down latest News ###
-#BBCnews = feedparser.parse("http://feeds.bbci.co.uk/news/rss.xml?edition=uk")
-SKYnews = feedparser.parse("http://feeds.skynews.com/feeds/rss/uk.xml")
-
 def create_my_default_slide(title, subtitle):
     title_slide_layout = prs.slide_layouts[0]
     slide = prs.slides.add_slide(title_slide_layout)
     slide.shapes.title.text = title
     slide.placeholders[1].text = subtitle
     return slide
-
-for i in range(8):
-    text = SKYnews["entries"][i]["title"]
-    links = SKYnews["entries"][i]["link"]
-    media = SKYnews["entries"][i]["media_thumbnail"]
-    print(text)
-    print(links)
-    print(media)
-    News.append(text) #add headlines to News list
-    Links.append(links) # add links to Links list
-
-# print (News)
-# print (Links)
 
 def add_hyper_link(shape, text, url):
     p = shape.text_frame.paragraphs[0]
@@ -96,9 +74,37 @@ def add_hyper_link(shape, text, url):
     hlink = r.hyperlink
     hlink.address = url
 
-### Create the Dictionary from the lists News and Links ###
-def main():
+button = Button(4)
+print ("Ready")
+
+### Button press for main program ###
+while True:
     
+    button.wait_for_press()
+    print ("Preparing the News")
+    ### lists to hold headline and link ###
+    News = []
+    Links = []
+
+    ### Create News Feed, pull down latest News ###
+    #BBCnews = feedparser.parse("http://feeds.bbci.co.uk/news/rss.xml?edition=uk")
+    SKYnews = feedparser.parse("http://feeds.skynews.com/feeds/rss/uk.xml")
+
+    
+    for i in range(10):
+        text = SKYnews["entries"][i]["title"]
+        links = SKYnews["entries"][i]["link"]
+        media = SKYnews["entries"][i]["media_thumbnail"]
+        print(text)
+        print(links)
+        print(media)
+        News.append(text) #add headlines to News list
+        Links.append(links) # add links to Links list
+
+    # print (News)
+    # print (Links)
+
+    ### Create the Dictionary from the lists News and Links ###
     News_Dict = {}
     for i in range(len(News)):
         News_Dict [News[i]] = Links[i]
@@ -114,16 +120,7 @@ def main():
         add_hyper_link(this_slide.shapes[1], value, value)
 
     print(len(prs.slides))
-
-    ### save the Powerpoint ###
+    ### sav e the Powerpoint ###
     prs.save('Whats_News.pptx')
     send_an_email()
     print ("Email Sent")
-
-button = Button(4)
-### Button press for main program ###
-while True:
-    button.wait_for_press()
-    print ("Preparing the News")
-    main()
-
